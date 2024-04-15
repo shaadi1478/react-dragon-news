@@ -5,9 +5,11 @@ const Login = () => {
 
     const handleLogin = e => {
         e.preventDefault();
-        const email = e.target.email.value;
-        const pawssword = e.target.password.value;
-        console.log(email, pawssword);
+        console.log(e.currentTarget)
+        const form = new FormData(e.currentTarget);
+        const email = form.get('email');
+        const password = form.get('password');
+        console.log(email, password)
     }
   return (
     <div>
