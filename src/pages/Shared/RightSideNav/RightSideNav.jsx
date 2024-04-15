@@ -33,7 +33,7 @@ const RightSideNav = () => {
         </button>
       </div>
       {/* q zone*/}
-      <div className="p-4 space-y-4 mb-6">
+      <div className="p-4 space-y-4 mb-6 bg-[#F3F3F3]">
         <h2 className="text-3xl font-bold">Q Zone</h2>
         <img src={qZone} alt="" />
         <img src={qZone1} alt="" />
