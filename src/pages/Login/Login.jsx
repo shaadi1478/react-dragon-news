@@ -1,19 +1,31 @@
 import { Link } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
+  const {singInWithEP} = useContext(AuthContext);
 
-    const handleLogin = e => {
-        e.preventDefault();
-        console.log(e.currentTarget)
-        const form = new FormData(e.currentTarget);
-        const email = form.get('email');
-        const password = form.get('password');
-        console.log(email, password)
-    }
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log(e.currentTarget);
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(email, password);
+
+    singInWithEP(email, password)
+    .then(result => {
+      console.log(result.user);
+    })
+    .catch(error =>{
+      console.error(error)
+    })
+  };
+
   return (
     <div>
-        <Navbar></Navbar>
+      <Navbar></Navbar>
       <div className="hero min-h-80 bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
@@ -59,7 +71,12 @@ const Login = () => {
                 <button className="btn btn-primary">Login</button>
               </div>
             </form>
-            <p className="mx-auto mb-5 text-gray-500">Dont have an account? <Link className="text-blue-500 font-bold" to="/register">Register</Link></p>
+            <p className="mx-auto mb-5 text-gray-500">
+              Dont have an account?{" "}
+              <Link className="text-blue-500 font-bold" to="/register">
+                Register
+              </Link>
+            </p>
           </div>
         </div>
       </div>

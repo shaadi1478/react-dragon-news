@@ -1,8 +1,9 @@
 import { FaRegBookmark, FaShareAlt } from "react-icons/fa";
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 const Newss = ({ newDetails }) => {
-  const { title, author, image_url, details } = newDetails;
+  const { title, author, image_url, details, _id } = newDetails;
   return (
     <div className="">
       <div className="card bg-base-100 mt-7 rounded-none border">
@@ -26,7 +27,13 @@ const Newss = ({ newDetails }) => {
         <figure className="mb-8">
           <img src={image_url} />
         </figure>
-        <p >{details}</p>
+        {
+          details.length > 200 ?
+          <p>{details.slice(0,200)} <Link 
+          to={`/newDetails/${_id}`}
+          className="text-blue-600 font-bold">Read More...</Link></p>
+          : <p >{details}</p>
+        }
        </div>
       </div>
     </div>
